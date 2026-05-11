@@ -6,7 +6,7 @@ def trivyLocalScan() {
     echo "trivy fs ."
 }
 
-
+ 
 def banditLocalScan() {
     echo "bandit -r ."
 }
