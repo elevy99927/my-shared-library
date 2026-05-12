@@ -4,9 +4,9 @@ def sonarqubeScan(){
 
 def sonarLocalScan() {
     withSonarQubeEnv('SonarQube') {
-
+        def scannerHome = tool 'SonarQubeScanner'
         sh """
-            sonar-scanner \
+            sh "${scannerHome}/bin/sonar-scanner \
               -Dsonar.projectKey=${env.JOB_NAME} \
               -Dsonar.projectName=${env.JOB_NAME} \
               -Dsonar.sources=. \
