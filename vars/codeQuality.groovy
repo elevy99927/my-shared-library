@@ -3,14 +3,14 @@ def sonarqubeScan(){
 } 
 
 def sonarLocalScan() {
-    withSonarQubeEnv('SonarQube') {
+    withSonarQubeEnv('SonarQubeScanner') {
         def scannerHome = tool 'SonarQubeScanner'
         sh """
-            sh "${scannerHome}/bin/sonar-scanner \
-              -Dsonar.projectKey=${env.JOB_NAME} \
-              -Dsonar.projectName=${env.JOB_NAME} \
-              -Dsonar.sources=. \
-              -Dsonar.sourceEncoding=UTF-8
+            ${scannerHome}/bin/sonar-scanner \
+            -Dsonar.projectKey=${env.JOB_NAME} \
+            -Dsonar.projectName=${env.JOB_NAME} \
+            -Dsonar.sources=. \
+            -Dsonar.sourceEncoding=UTF-8
         """
     }
 }
