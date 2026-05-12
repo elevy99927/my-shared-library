@@ -2,6 +2,14 @@ def sonarqubeScan(){
     echo "Scan with Sonarqube"
 } 
 
+def sonarCreateProject(String projectKey) {
+    sh """
+        curl -s -u ${env.SONAR_TOKEN}: \
+        -X POST "${env.SONAR_HOST_URL}/api/projects/create" \
+        -d "project=${projectKey}&name=${projectKey}"
+    """
+}
+
 def sonarLocalScan() {
     def scannerHome = tool 'SonarQubeScanner'
     withSonarQubeEnv('SonarQubeScanner') {
