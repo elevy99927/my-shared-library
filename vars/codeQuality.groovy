@@ -3,8 +3,8 @@ def sonarqubeScan(){
 } 
 
 def sonarLocalScan() {
+    def scannerHome = tool 'SonarQubeScanner'
     withSonarQubeEnv('SonarQubeScanner') {
-        def scannerHome = tool 'SonarQubeScanner'
         sh """
             ${scannerHome}/bin/sonar-scanner \
             -Dsonar.projectKey=${env.JOB_NAME} \
